@@ -1,0 +1,45 @@
+<div id="jobs">
+		<% jobs.forEach(function(job){ %>
+
+			<div class="post">
+				<div class="job_header">
+					<h3><%= job.job_title %></h3>
+					<p class="details"><i class="fas fa-suitcase"></i> <%=job.min_experience %> - <%=job.max_experience %> years &nbsp;&nbsp;  <i class="fas fa-map-marker-alt"></i> <%=job.job_location %> </p>
+			
+				</div>
+
+				<div class="job_content">
+					<div style="width: 15%; color: gray;display: inline-block;">Key Area: </div>
+					<div style="width: 80%; display: inline-block;" ><%= job.functional_area %></div>
+
+					<div style="width: 15%;vertical-align: top; color:grey; display: inline-block;">Description: </div>
+					<% var desc = job.job_description; %>
+					<!-- regex to remove html -->
+					<% desc = desc.replace(/<[^>]*>/g, '') %>
+					<div style="width: 80%; display: inline-block;" > <%= desc.substring(0,200) %>...</div>
+					<br>
+				</div>
+				<div class="footer">
+					<div style="width: 40% ;display: inline-block";> Rs. <%= job.min_salary %>-<%=job.max_salary %> LPA</div>
+			<!-- Age of Job_posts -->
+					<% var time_diff = Date.now() - job.createdAt; %>
+					<% var age =" A few", unit = "Seconds"; %>
+					<% var time = [1000,1000*60,1000*60*60,1000*60*60*24,1000*60*60*24*30,1000*60*60*24*30*12]; %>
+					<% var period = ["Seconds", "Minutes", "Hours", "Days", "Months", "Years"]; %>
+					<% for(var i=0; i < time.length; i++){ %>
+						<% var temp = Math.floor(time_diff/time[i]); %>
+						<% if(temp != 0){ %>
+							<% age = temp , unit = period[i]; %>
+						<% }else break;%>
+					<% } %>
+
+
+					<div style="float:right; display: inline-block;"><i class="fas fa-calendar-week"></i>  Posted:<%= age %> <%= unit %> Ago</div>
+
+				</div>
+			</div>
+		<% }); %>
+		
+		<% include pagination %>
+	</div>
+</div>

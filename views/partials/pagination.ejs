@@ -1,0 +1,27 @@
+<% if (pageCount > 1) { %>
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <a href="/?page=1">Prev</a>
+        <% } %>
+        <% var i = 1;
+        if (currentPage > 5) {
+            i = +currentPage - 4;
+        } %>
+        <% if (i !== 1) { %>
+            <a href="#">...</a>
+        <% } %>
+        <% for (i; i<=pageCount; i++) { %>
+            <% if (currentPage == i) { %>
+                <a class="active"><span><%= i %> <span class="sr-only">(current)</span></span></a>
+            <% } else { %>
+                <a href="/?page=<%= i %>"><%= i %></a>
+            <% } %>
+            <% if (i == (+currentPage + 4)) { %>
+                <a href="#">...</a>
+            <% break; } %>
+        <% } %>
+        <% if (currentPage != pageCount) { %>
+            <a href="/?page=<%= pageCount %>">Next</a>
+        <% } %>
+    </div>
+<% } %>

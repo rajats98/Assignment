@@ -1,0 +1,37 @@
+
+
+<div class="container">
+	<div id="search">
+		<form class="flex-container" action="/?search=true&" method="get">
+			
+			<input name="role" list="role" placeholder="Role,designations and functional area" style="width: 45%">
+			<datalist id="role" >
+				<% functional_area.functionalarea.forEach(function(fa){ %>
+						<%	fa.subCategory.forEach(function(subCat){ %>
+							<option value="<%=subCat.name %>">
+					<% }); %>
+				<% }); %>
+			</datalist>
+			<input name="location" list="locations" placeholder="Locations" style="width: 30%">
+			<datalist id="locations">
+				<% locations.cities.forEach(function(city){ %>
+						<option value="<%= city.name %>">
+				<% }); %>
+			</datalist>
+			<input name="salary" list="salary" placeholder="Salary" style="width: 10%">
+			<datalist id="salary">
+				<% for(var i=0;i<40;i++){ %>
+					<option value="<%= i %> LPA">
+				<% } %>
+			</datalist>
+			<input name="experience" list="experience" placeholder="Experience" style="width: 10%">
+			<datalist id="experience">
+				<% for(var i=0;i<30;i++){ %>
+					<option value="<%= i %> years ">
+				<% } %>
+			</datalist>
+			<button style="width: 5%"><i class="fas fa-search"></i></button>
+
+		</form>
+	</div>
+</div>

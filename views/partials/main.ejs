@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="flex-container">
+		<div id="functional_area">
+			<span><strong>Functional Area </strong>	</span>
+			
+				<% functional_area.functionalarea.forEach(function(fa){ %>
+					
+					<div class = "faDivision">
+						<button class="collapsible" > 
+							<h4><%= fa.name %> <i class="fas fa-chevron-down" style="float: right;"></i></h4>
+						</button>
+						
+							<div class="options">
+								<% fa.subCategory.forEach(function(subCat){ %>
+									<div class = "key">
+										<input type="checkbox" name="key"id="<%= subCat.name %>" value="<%= subCat.name %>">
+										<label for="<%= subCat.name %>" ><%= subCat.name %></label> 
+									</div>
+								<% }); %>
+							</div>
+					</div>
+				<% }); %>	
+		</div>
+
+	<%include jobsPanel %>
+	</div>
+</div>
